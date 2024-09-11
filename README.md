@@ -40,13 +40,11 @@ Terakhir, saya melakukan deployment aplikasi ke platform hosting seperti Heroku 
 
 Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
 
-+-------------------+        +-------------------+       +---------------+       +-------------------+        +-------------------+
-| Client (Browser)   | -----> |    urls.py        | ----> |   views.py    | ----> |   models.py        | ----> |   Template (HTML)  |
-+-------------------+        +-------------------+       +---------------+       +-------------------+        +-------------------+
-        |                        |                        |                    |                                 |
-        |                        |                        |                    |                                 |
-    HTTP Request              URL Routing             View Logic           Database Interaction             HTML Rendering
 
+Client (Browser) -----> urls.py (main APP)  ---->  views.py  ---->  models.py   ---->  Template (HTML)  ---->   Response Client
+        |                        |                        |                    |                   
+        |                        |                        |                    |                                 
+    HTTP Request              URL Routing             View Logic         Database       
 
 Penjelasan Alur:
 Client (Browser): Pengguna mengirimkan permintaan HTTP (seperti GET atau POST) melalui URL yang dimasukkan di browser untuk mengakses halaman atau sumber daya tertentu pada aplikasi.
