@@ -1,6 +1,8 @@
+import uuid
 from django.db import models
 
 class ProductDetail(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
     price = models.IntegerField()
     description = models.TextField()
@@ -10,4 +12,3 @@ class ProductDetail(models.Model):
     @property
     def is_in_stock(self):
         return self.stock > 0
- 
