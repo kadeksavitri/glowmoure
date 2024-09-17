@@ -1,5 +1,6 @@
 LINK PwS : http://kadek-savitri-glowmoure.pbp.cs.ui.ac.id/
 
+Tugas Individu 1
 Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
 
 1. Mengaktifkan Virtual Environment dan Menyiapkan Dependencies
@@ -68,3 +69,48 @@ Django sering dipilih sebagai framework awal dalam pembelajaran pengembangan per
 
 Mengapa model pada Django disebut sebagai ORM?
 Model dalam Django dikenal sebagai ORM (Object-Relational Mapping) karena berperan sebagai penghubung antara objek Python dengan tabel database relasional. Dengan menggunakan ORM, pengembang bisa berinteraksi dengan database hanya melalui kode Python tanpa perlu menulis query SQL secara langsung. Django secara otomatis menerjemahkan operasi yang dilakukan pada objek Python menjadi query SQL dan mengonversi hasilnya kembali ke dalam bentuk objek Python. Salah satu kelebihan utama ORM adalah memudahkan pengembang yang mungkin tidak menguasai SQL untuk tetap bisa bekerja dengan berbagai jenis database dengan lebih mudah. Selain itu, ORM juga membantu meningkatkan keamanan dengan melindungi aplikasi dari serangan seperti SQL Injection.
+
+========================================================================================================
+Tugas Individu 2
+
+Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+Jawab: 
+data delivery sangat diperlukan pengimplementasian sebuah platform karena data delivery memungkinkan mentransfer data pada berbagai komponen dalam platform, baik itu antar frontend dan backend atau antar server. Hal ini dilakukan untuk mengirim data dari database ke user interface atau sebaliknya sehingga ata delivery memungkinkan pertukaran ata ini terjadi secara efisien an terorganisir. Metode data delivery yang digunakan seperti XML dan JSON membantu menyederhanakan proses dengan menyediakan format yang mudah dibaca dan diproses oleh mesin. 
+
+Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+Jawab: 
+Tergantung pada spesifik aplikasi yang dibuat. Jika ingin menyimpan data berbagai data yang berbeda dengan banyak penggunaan variable maka gunakanlah XML karena XML dapat memeriksa kesalahan pada struktur data yang kompleks dan memiliki berbagai tipe data bawaan yang berbeda serta mendukung proses skema XSD dan proses validasi data yang lebih baik dari pada JSON, namun kompleksitas XML memiliki sintaks dan struktur yang lebih rumit serta XML lebih verbose yang mengakibatkan ukuran dile yang lebih besar dan Waktu penguraian yang lebih lama. 
+
+Namun, jika ingin mendapatkan kecepatan dan efisiensi dalam pemrosesan data, maka gunakanlah JSON. Dengan ukuran data yang lebih kecil, JSON mempercepat waktu penguraian dan transmisi, ideal untuk aplikasi yang membutuhkan performa tinggi. Formatnya yang sederhana memudahkan pembacaan dan penulisan, mendukung pengembangan yang lebih cepat dan lebih intuitif.
+
+JSON lebih popular dibandingkan XML karena:
+- Keefisienan: JSON menggunakan lebih sedikit data dan mengurangi overhead bandwidth sehingga meningkatkan kecepatan.
+- Kemudahan penggunaan: sintak JSON lebih sederhana dan mudah dipahami dibandingkan dengan XML. dan Struktur JSON yang felksibel memudahkan manipulasi dan penggunaan dalam aplikasi dinamis
+- JSON luas didukung dalam banyak Bahasa pemrograman dan framework sehingga lebih fleksibel untuk pengembangan modern aplikasi web dan mobile. 
+
+Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+Jawab: 
+Method is_valid() digunakan utuk memvalidasi data yang dikirim melalui form sesuai dengan aturan yang ditetapkan alam model Django. Method ini memeriksa kevalidan data, seperti memastikan format, tipe data, dan nilainya sheingga perlu untuk dipastikan lagi integritas data sebelum disimpan ke database untuk menghidari kesalahan dan menjaga keamanan aplikasi.
+
+Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+Jawab: 
+csrf_token atau Cross-Site Request Forgery token diperlukan untuk melindungi aplikasi web dari serangan CSRF. Penyerang bisa memanipulasi pengguna untuk melakukan aksi tidak diinginkan ada aplikasi web yang sudah mereka autentikasikan.Jikas suatu form tidak memiliki csrf_token, aplikasi menjadi rentan terhadap serangan cyber, dimana penyerang apat mengirimkan request berbahaya melalui Tindakan pengguna yang tidak menyadarinya, seprti mengubah kata sandi atau email mereka tanpa persetujan lalu mengambil alih aplikasi web tersebut. 
+
+Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+Jawab: 
+1. Membuat Input Form: 
+- Sebelum membuat form input, saya akan memastikan model data seperti ProductDetail yang digunakan untuk menyimpan data product yang akan ditambahkan oleh pengunna sudah ada pada file models.py. 
+- Kemudian saya membuat form.py dengan ModelForm untuk mempermudah pengambilan dan validasi data dari pengguna. 
+- Selanjutnya saya menambahkan views.py untuk menampilkan form kepada pengguna dan mneyimpan data saat form disubmit. 
+- Terakhir, saya membuat template HTML untuk menampilkan form dengan menggunakan token CSRF untuk keamanan seprti mencegah serangan berbahaya yang emmeanfaatkan celah di formular web. 
+
+2. Menambahkan Fungsi Views untuk XML dan JSON
+Langkah kedua adalah menambahkan fungsi untuk mengembalikan data dalam format XML dan JSON. Tujuannya adalah menyediakan metode untuk mengirimkan data kepada aplikasi atau layanan lain yang membutuhkan format standar ini. XML dan JSON banyak digunakan dalam integrasi antar-aplikasi karena kedua format tersebut mudah dibaca oleh mesin. Dengan menggunakan serializers di Django, kita dapat mengonversi objek Product Detail menjadi format XML atau JSON, memungkinkan data mood diakses dalam format yang lebih fleksibel dan umum digunakan. Selain itu, dibuat juga fungsi untuk mengembalikan data berdasarkan ID tertentu agar data dapat difilter sesuai kebutuhan pengguna atau aplikasi.
+
+3. Routing URL untuk views
+Setelah views selesai, kita harus menambahkan routing pada urls.py untuk setiap fungsi yang telah dibuat. Ini bertujuan agar setiap endpoint dapat diakses oleh pengguna dan aplikasi eksternal. Misalnya, kita menambahkan path untuk form input, serta path untuk mendapatkan data dalam format XML dan JSON, baik untuk seluruh data maupun untuk data spesifik berdasarkan ID. Routing ini memungkinkan aplikasi untuk menangani berbagai permintaan dari pengguna, seperti menambahkan data baru atau mengambil data yang ada dalam format tertentu.
+
+Referensi : 
+Django Software Foundation. (n.d.). Cross Site Request Forgery protection. Django documentation. Diakses dari https://docs.djangoproject.com/en/stable/ref/csrf/ 
+Kurniawan, A. (2020). Pengenalan Format Data: XML vs JSON. Diakses dari w3schools.com
+Ultahost. (n.d.). Perbandingan antara XML dan JSON: Mana yang lebih baik? Diakses dari https://ultahost.com/blog/id/perbandingan-antara-xml-dan-json-mana-yang-lebih-baik/ 
