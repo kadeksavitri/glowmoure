@@ -110,6 +110,11 @@ Langkah kedua adalah menambahkan fungsi untuk mengembalikan data dalam format XM
 3. Routing URL untuk views
 Setelah views selesai, kita harus menambahkan routing pada urls.py untuk setiap fungsi yang telah dibuat. Ini bertujuan agar setiap endpoint dapat diakses oleh pengguna dan aplikasi eksternal. Misalnya, kita menambahkan path untuk form input, serta path untuk mendapatkan data dalam format XML dan JSON, baik untuk seluruh data maupun untuk data spesifik berdasarkan ID. Routing ini memungkinkan aplikasi untuk menangani berbagai permintaan dari pengguna, seperti menambahkan data baru atau mengambil data yang ada dalam format tertentu.
 
+SS XML dan JSON
+![Screenshot (1121)](https://github.com/user-attachments/assets/73d2354c-5eb3-4361-b9fc-e482fb0a5ce2)
+
+![Screenshot (1120)](https://github.com/user-attachments/assets/148b3424-8815-47bf-90c3-abecf760bc4e)
+
 Referensi : 
 Django Software Foundation. (n.d.). Cross Site Request Forgery protection. Django documentation. Diakses dari https://docs.djangoproject.com/en/stable/ref/csrf/ 
 Kurniawan, A. (2020). Pengenalan Format Data: XML vs JSON. Diakses dari w3schools.com
