@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Register</title>
+<style>
+    body {
+        background-color: #f4f4f2; 
+        font-family: Arial, sans-serif;
+    }
+
+    .login {
+        width: 400px; 
+        padding: 40px; 
+        margin: 50px auto; 
+        background-color: #fff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    h1 {
+        color: #4A2C2A; 
+        text-align: center;
+        margin-bottom: 20px; 
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="submit"] {
+        width: calc(100% - 22px); 
+        padding: 12px; 
+        margin-top: 5px;
+        border: 2px solid #ccc;
+        border-radius: 5px; 
+    }
+
+    input[type="submit"] {
+        background-color: #8B5E3C; 
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #6e482e; 
+    }
+
+    a {
+        color: #8B5E3C;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        color: #ff0000; 
+        font-size: 14px; 
+    }
+</style>
+{% endblock meta %}
+
+{% block content %}
+
+<div class="login">
+  <h1>Register</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <td></td>
+        <td><input type="submit" name="submit" value="Daftar" /></td>
+      </tr>
+    </table>
+  </form>
+
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+{% endblock content %}
