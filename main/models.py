@@ -10,6 +10,8 @@ class ProductDetail(models.Model):
     description = models.TextField()
     category = models.CharField(max_length=255)
     stock = models.IntegerField()
+    image = models.ImageField(upload_to='product_images/', default='default_image.png')
+
 
     @property
     def is_in_stock(self):

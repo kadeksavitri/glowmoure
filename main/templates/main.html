@@ -1,127 +1,81 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Glowmoure</title>
+{% endblock meta %}
 {% block content %}
+{% include 'navbar.html' %}
 
-<style>
-    body {
-        background-color: #f8f5f0; 
-        font-family: 'Helvetica', sans-serif;
-    }
+<body class="overflow-x-hidden">
+<div class="flex justify-center mt-4">
+  <img src="{% static 'image/main.png' %}" alt="Logo" class="w-full h-screen" />
+  <h1 class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-3xl font-medium font-serif">
+    Aesthetic Candles and Nightlight
+  </h1>
+</div>
 
-    h1 {
-        font-size: 36px;
-        color: #5a4630;
-        text-align: center;
-        font-weight: bold;
-    }
+<div class="text-center mb-4 max-w-screen-md mx-auto">
+  <p class="text-white mt-2 mb-6">
+    The feeling of lightness is a luxurious escape, where life's burdens melt away, leaving you free and serene. 
+  </p>
+  <h2 class="text-2xl font-medium font-serif text-[#7d4c3a]">FEELING OF LIGHTNESS</h2>
+  <p class="text-gray-700 mt-2 mb-6">
+    The feeling of lightness is a luxurious escape, where life's burdens melt away, leaving you free and serene. It's like floating in pure bliss, surrounded by soft light and delicate, refined aromas—a perfect harmony of peace and elegance that elevates the spirit.
+  </p>
+  <p class="text-white mt-2 mb-6">
+    The feeling of lightness is a luxurious escape, where life's burdens melt away, leaving you free and serene. 
+  </p>
+</div>
 
-    h5 {
-        font-size: 18px;
-        color: #5a4630;
-        text-align: center;
-        margin-bottom: 20px;
-    }
 
-    p {
-        font-size: 16px;
-        color: #5a4630;
-        text-align: center;
-    }
+<div class="flex justify-center mb-6">
+  <a href="{% url 'main:create_product_entry' %}" class="bg-[#7d4c3a] hover:bg-[#6b3d30] text-white font-medium py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+    Add New Product Entry
+  </a>
+</div>
+    
+<div class="text-center mb-4">
 
-    table {
-        width: 80%;
-        margin: 20px auto;
-        border-collapse: collapse;
-        background-color: #fff;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+</div>
+  <p class="text-white mt-2 mb-6">
+    The feeling of lightness is a luxurious escape, where life's burdens melt away, leaving you free and serene. 
+  </p>
+</div>
 
-    th, td {
-        padding: 15px;
-        text-align: left;
-        color: #5a4630;
-    }
+    {% if not product_entries %}
+    <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+        <img src="{% static 'image/LogoGlowmoure.png' %}" alt="Logo Glowmoure" class="w-32 h-32 mb-4"/>
+        <p class="text-center text-gray-600 mt-4">Belum ada data product pada Glowmoure.</p>
+    </div>
+    {% else %}
+    <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full">
+        {% for product_entry in product_entries %}
+            {% include 'card_product.html' with product_entry=product_entry %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="overflow-x-hidden px-2 md:px-8 pb-8 pt-24 screen bg-transparant flex flex-col items-center">
+      <div class="p-2 mb-6 relative">
+          <div class="relative grid grid-cols-1 z-30 md:grid-cols-3 gap-8 justify-center">
+              {% include "card_info.html" with title='NPM' value=npm %}
+              {% include "card_info.html" with title='Name' value=name %}
+          </div>
+          <div class="w-full px-6 absolute top-[44px] left-0 z-20 hidden md:flex">
+              <div class="w-full min-h-4 bg-[#7d4c3a]-700">
+              </div>
+          </div>
+          <div class="h-full w-full py-6 absolute top-0 left-0 z-20 md:hidden flex">
+              <div class="h-full min-w-4 bg-[#7d4c3a]-700 mx-auto">
+              </div>
+          </div>
+      </div>
+  </div>
+  
 
-    th {
-        background-color: #dbc3a7; 
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    td {
-        background-color: #f8f5f0;
-        border-bottom: 1px solid #dbc3a7;
-    }
-
-    button {
-        background-color: #5a4630;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        margin: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    button:hover {
-        background-color: #4b3c28; 
-    }
-
-    .center {
-        text-align: center;
-        margin-top: 30px;
-    }
-</style>
-
-<h1>Glowmoure</h1>
-<h5>Glowmoure.id offers aesthetic scented candles with delightful fragrances and cute acrylic nightlights that add a cozy glow to any space. Bring charm and warmth to your home with our beautifully designed products!</h5>
-
-<h5>Name: </h5>
-<p>{{ name }}</p> 
-<h5>NPM: </h5>
-<p>{{ npm }}</p>
-
-{% if not product_entries %}
-<p>Belum ada data product pada glowmoure.</p>
-{% else %}
-<table>
-  <tr>
-    <th>Product Name</th>
-    <th>Price</th>
-    <th>Description</th>
-    <th>Category</th>
-    <th>Stock</th>
-  </tr>
-
-  {% comment %} Berikut cara memperlihatkan data product di bawah baris ini 
-  {% endcomment %} 
-  {% for product_entry in product_entries %}
-  <tr>
-    <td>{{product_entry.name}}</td>
-    <td>{{product_entry.price}}</td>
-    <td>{{product_entry.description}}</td>
-    <td>{{product_entry.category}}</td>
-    <td>{{product_entry.stock}}</td>
-  </tr>
-  {% endfor %}
-</table>
-{% endif %}
-
-<br />
-
-<a href="{% url 'main:create_product_entry' %}">
-  <button>Add New Product Entry</button>
-</a>
-
-<a href="{% url 'main:logout' %}">
-  <button>Logout</button>
-</a>
-
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-
+<div class="px-3 mb-4"></div>
+  <a href="#" class="bg-[#7d4c3a] hover:bg-[#6b3d30] text-white font-medium py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 w-full text-center">
+    Last Login: {{ last_login }}
+  </a>
+</div>
 {% endblock content %}

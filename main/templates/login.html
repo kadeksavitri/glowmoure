@@ -1,99 +1,69 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block meta %}
 <title>Login</title>
-<style>
-    body {
-        background-color: #f4f4f2; /* Warna putih tulang */
-        font-family: Arial, sans-serif;
-    }
-
-    .login {
-        width: 300px;
-        padding: 20px;
-        margin: 100px auto;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-    }
-
-    h1 {
-        color: #4A2C2A; 
-        text-align: center;
-    }
-
-    table {
-        width: 100%;
-        margin: 20px 0;
-    }
-
-    td {
-        padding: 8px;
-    }
-
-    input[type="text"],
-    input[type="password"],
-    input[type="submit"] {
-        width: 95%;
-        padding: 10px;
-        margin: 5px 0;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .btn {
-        background-color: #8B5E3C; 
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        padding: 10px 20px;
-    }
-
-    .btn:hover {
-        background-color: #6e482e;
-    }
-
-    a {
-        color: #8B5E3C;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-
-    ul {
-        list-style: none;
-        padding: 0;
-        color: red;
-    }
-</style>
 {% endblock meta %}
 
 {% block content %}
-<div class="login">
-  <h1>Login</h1>
+<div class="min-h-screen flex items-center justify-center w-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div class="text-center mb-6">
+      <img src="{% static 'image/LogoGlowmoure.png' %}" alt="Logo Glowmoure" class="w-24 h-auto mx-auto">
+    </div>
+    <div>
+      <h2 class="mt-6 text-center text-black text-3xl font-extrabold text-gray-900">
+        Login to your account
+      </h2>
+    </div>
+    <form class="mt-8 space-y-6" method="POST" action="">
+      {% csrf_token %}
+      <input type="hidden" name="remember" value="true">
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="username" class="sr-only">Username</label>
+          <input id="username" name="username" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-[#7d4c3a] focus:border-[#7d4c3a] focus:z-10 sm:text-sm" placeholder="Username">
+        </div>
+        <div>
+          <label for="password" class="sr-only">Password</label>
+          <input id="password" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-[#7d4c3a] focus:border-[#7d4c3a] focus:z-10 sm:text-sm" placeholder="Password">
+        </div>
+      </div>
 
-  <form method="POST" action="">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input class="btn login_btn" type="submit" value="Login" /></td>
-      </tr>
-    </table>
-  </form>
+      <div>
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#7d4c3a] hover:bg-[#ae7b6d] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:[#7d4c3a]">
+          Sign in
+        </button>
+      </div>
+    </form>
 
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} Don't have an account yet?
-  <a href="{% url 'main:register' %}">Register Now</a>
+    {% if messages %}
+    <div class="mt-4">
+      {% for message in messages %}
+      {% if message.tags == "success" %}
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline">{{ message }}</span>
+            </div>
+        {% elif message.tags == "error" %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline">{{ message }}</span>
+            </div>
+        {% else %}
+            <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline">{{ message }}</span>
+            </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+      <p class="text-sm text-black">
+        Don't have an account yet?
+        <a href="{% url 'main:register' %}" class="font-medium text-[#ae7b6d] hover:text-[#7d4c3a]">
+          Register Now
+        </a>
+      </p>
+    </div>
+  </div>
 </div>
-
 {% endblock content %}

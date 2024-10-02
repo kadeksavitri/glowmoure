@@ -1,6 +1,6 @@
 LINK PwS : http://kadek-savitri-glowmoure.pbp.cs.ui.ac.id/
 
-Tugas Individu 1
+Tugas Individu 2
 Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
 
 1. Mengaktifkan Virtual Environment dan Menyiapkan Dependencies
@@ -71,7 +71,7 @@ Mengapa model pada Django disebut sebagai ORM?
 Model dalam Django dikenal sebagai ORM (Object-Relational Mapping) karena berperan sebagai penghubung antara objek Python dengan tabel database relasional. Dengan menggunakan ORM, pengembang bisa berinteraksi dengan database hanya melalui kode Python tanpa perlu menulis query SQL secara langsung. Django secara otomatis menerjemahkan operasi yang dilakukan pada objek Python menjadi query SQL dan mengonversi hasilnya kembali ke dalam bentuk objek Python. Salah satu kelebihan utama ORM adalah memudahkan pengembang yang mungkin tidak menguasai SQL untuk tetap bisa bekerja dengan berbagai jenis database dengan lebih mudah. Selain itu, ORM juga membantu meningkatkan keamanan dengan melindungi aplikasi dari serangan seperti SQL Injection.
 
 ========================================================================================================
-Tugas Individu 2
+Tugas Individu 3
 
 Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 Jawab: 
@@ -122,7 +122,7 @@ Ultahost. (n.d.). Perbandingan antara XML dan JSON: Mana yang lebih baik? Diakse
 
 
 ========================================================================================================
-Tugas Individu 3
+Tugas Individu 4
 
 1. Apa perbedaan antaran HttpResponseRedirect() dan redirect()
 Jawab: 
@@ -178,3 +178,78 @@ Menampilkan detail informasi pengguna yang sedang logged in dan menerapkan cooki
 - Di halaman utama (show_main()), saya menambahkan konteks last_login agar bisa ditampilkan di template.
 - Pada saat logout, saya menggunakan response.delete_cookie('last_login') untuk menghapus cookie last_login ketika pengguna keluar.
 - Di template main.html, saya menampilkan informasi username dan waktu login terakhir menggunakan data yang ada di dalam konteks dan cookie.
+
+
+========================================================================================================
+Tugas Individu 5
+
+1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Jawab:
+Dalam CSS, urutan prioritas pengambilan CSS selector ditentukan oleh aturan cascade.  Berikut adalah urutan prioritas pengambilan CSS selector:
+    1) Inline Style : yang dimana perubahan style yang didefinisikan langsung dalam artribut sytle elemen HTML
+    2) ID selector,  perubahan style tertentu yang didefinisikan dengan menggunakan tanda # di dalam artibutee
+    3) Class selecctor, menggunakan titik (.) yang menunjuk langsung pada sribut di dalamnya
+    4) Element selector, menggunakan titik (.) yang menunjung pada nama tag elemen. Contoh: Jika ingin mengganti gaya semua tag <p>, maka dapat menggunakan p{... }
+
+2.  Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+Jawab: 
+Responsive design sangat penting dalam pengembangan aplikasi web karena memungkinkan website atau aplikasi untuk tampil optimal di berbagai perangkat dengan ukuran layar yang berbeda. Hal ini meningkatkan aksesibilitas dan pengalaman pengguna, serta membantu SEO.
+
+Contoh aplikasi dengan responsive design: Website yang menggunakan Bootstrap atau media queries dalam CSS untuk mengatur tampilan konten yang responsif. Contoh aplikasi tanpa responsive design: Website lama yang hanya tampil optimal di layar desktop dan tampilan kontennya berantakan atau tidak dapat digunakan dengan baik di perangkat mobile.
+
+3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+Jawab: 
+
+Margin adalah ruang antara batas luar elemen dengan elemen lain di sekitarnya. Margin digunakan untuk mengontrol jarak antara elemen dengan elemen lain di luar elemen tersebut. Margin tidak memiliki latar belakang atau warna untuk mengontrol jarak antar elemen dala, desain, dan tidak akan memengaruhi tampilan elemen itu sendiri. Margin tidak mempengaruhi ukuran internal elemen, tetapi dapat mempengaruhi penempatan elemen tersebut relatif terhadap elemen lain. 
+
+Border adalah garis yang mengelilingi elemen untuk memberikan definisi visual dan memisahkan elemn tersebut dari elemen lain di sekitarnya. Border dapat dikustomisasi dengan memiliki lebar, warna, dan gaya sheingga memberikan fleksibilitas dalam mendesain tampilan sebuah elemen. 
+    - border-width: Mengatur ketebalan garis border. Bisa ditentukan dalam pixel (px), em (em), atau satuan lain yang valid.
+    - border-style: Menentukan jenis garis yang digunakan. Beberapa nilai yang umum digunakan adalah solid, dotted, dashed, double, groove, ridge, inset, dan outset.
+    - border-color: Menentukan warna border. Warna bisa diatur dengan nama warna, kode hexadecimal, RGB, RGBA, HSL, atau HSLA.
+
+Padding adalah ruang antara batas dalam elemen dengan konten di dalam elemen tersebut.Padding digunakna untuk mnegatur jarak antara onten dalam elemen dan batas elemen tersebu. Padding dapat memiliki latar belakang atau warna, dan akan memengaruhi tampilan elemen dan kontennya. 
+    
+Untuk mengimplementasikannya dalam CSS:
+// contoh penerapan margin 
+.box {
+  margin: 20px auto; 
+  width: 80%; 
+}
+
+// contoh untuk mengimplement border
+.card {
+  border: 1px solid #ccc; 
+  padding: 16px;
+  margin: 10px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+// contoh penggunaan padding (dapat ditambah warna)
+.box {
+  padding: 20px; 
+  background-color: #f4f4f4; 
+}
+
+
+4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+Jawab: 
+Flexbox merupakan metode layout di CSS yang memungkinkan ktia untuk mendistribusikan ruang di dalam container dan menyesuaikan konten sesuai dengan ukuran layar. Flexbox sangat berguna untuk layout satu dimensi, seprti baris atau kolom. Kita menambahkan display: flex untuk mendefinisikan flexbox pada sebuah elemen dan flex-direction untuk mengatur arah elemen yaitu column atau row. 
+
+Grid layout adalah teknik layout yang lebih kompleks dan kuat yang memungkinkan untuk mendefinisikan template kolom dan baris, serta menempatkan elemen-elemen di dalam grid yang telah ditentukan. Grid layout sangat efektif untuk desain yang kompleks dan multi-dimensi. Kita menambahkan display: grid di sebuah elemen, grid(mengatur ukuran elemen) dan grip-gap(untuk mengatur jarak antar elemen)
+ 
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+Menambahkan Tailwind ke Aplikasi 
+- menambahkan <meta name="viewport"> serta <script src="https://cdn.tailwindcss.com"> pada base.html
+
+Membuat Fitur Edit Product dan Delete product
+- keduanya hampir dilakukan sama, yaitu menambahkan fungsi edit_product dan delete_product pada view.py serta membuat html baru untuk edit, tetapi menambahkan url saja untuk delete pada subdirektori main dengan kemudian menambahkan path dan import ke urls.py
+
+Membuat navigasi bar aplikasi
+- Membuat berkas navbar.html pada templates kemudian menautkan navbarnya dengan menggunakan {% include 'navbar.html' %} ke main.html, create_product_entry.htm, dan edit_mood.html
+
+Konfigurasi untuk static file
+- menambahkan  middleware WhiteNoise. pada setting, menambahkan styles dan external CSSyang digunakan sebagai base atribut desain dan menambahkan nya ke base.html agar style CSS dapat digunakan di global.css kemudia membuat custom styling ke global.css
+
+Melakukan styling pada halaman login, register, home, card_mood, main.html, create_product_entry.html, edit_mood.html. 

@@ -3,11 +3,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block meta %} {% endblock meta %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    {% block meta %}{% endblock meta %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
   </head>
 
   <body>
-    {% block content %} {% endblock content %}
+    {% block content %}
+      <div class="container mx-auto px-4">
+        <!-- Your form content here -->
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}  <!-- Display all form fields as paragraphs -->
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Submit
+          </button>
+        </form>
+      </div>
+    {% endblock content %}
   </body>
 </html>

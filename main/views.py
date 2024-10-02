@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.http import HttpResponse
 from django.core import serializers
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from main.forms import ProductDetailForm
 from main.models import ProductDetail
 
@@ -26,14 +26,15 @@ def show_main(request):
     return render(request, "main.html", context)
 
 def create_product_entry(request):
-    form = ProductDetailForm(request.POST or None)
-
+    form = ProductDetailForm(request.POST, request.FILES)
     if form.is_valid() and request.method == "POST":
-        mood_entry = form.save(commit=False)
-        mood_entry.user = request.user
-        mood_entry.save()
+        product_entry = form.save(commit=False)
+        product_entry.user = request.user
+        product_entry.save()
         return redirect('main:show_main')
-    
+    else:
+        form = ProductDetailForm()
+
     context = {'form': form}
     return render(request, "create_product_entry.html", context)
 
@@ -85,3 +86,35 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_product(request, id):
+    product = ProductDetail.objects.get(pk=id)
+    
+    if request.method == "POST":
+        form = ProductDetailForm(request.POST, request.FILES, instance=product)  # Menyertakan request.FILES
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('main:show_main'))
+    else:
+        form = ProductDetailForm(instance=product)
+
+    context = {'form': form}
+    return render(request, 'edit_product.html', context)
+
+
+def delete_product(request, id):
+    product = ProductDetail.objects.get(pk=id)
+    product.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def home(request):
+    return HttpResponse("<h1>Welcome to Home</h1>")
+
+def candle(request):
+    return HttpResponse("<h1>Welcome to Candle Page</h1>")
+
+def light(request):
+    return HttpResponse("<h1>Welcome to Light Page</h1>")
+
+def about_us(request):
+    return HttpResponse("<h1>About Us</h1>")
