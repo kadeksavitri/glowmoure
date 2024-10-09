@@ -1,11 +1,15 @@
 {% load static %}
 
-<div class="relative break-inside-avoid">
+<!-- <div class="relative break-inside-avoid"> -->
+  <!-- <div class="container mx-auto px-4 sm:px-6 lg:px-8"> -->
+
+    <!-- <div class="relative top-5 bg-[#7d4c3a]-100 shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col border-2 border-[#7d4c3a]-300 transform rotate-1 hover:rotate-0 transition-transform duration-300"> -->
+      <div class="relative break-inside-avoid">
   <!-- <div class="container mx-auto px-4 sm:px-6 lg:px-8"> -->
 
     <!-- Tambahkan gambar produk di sini -->
-    <div class="relative top-5 bg-[#7d4c3a]-100 shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col border-2 border-[#7d4c3a]-300 transform rotate-1 hover:rotate-0 transition-transform duration-300">
-      
+    <div class="relative top-5 bg-white shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col border-2 border-[#7d4c3a] transform rotate-1 hover:rotate-0 transition-transform duration-300 ml-6 mr-6">
+
         <!-- Bagian untuk menampilkan gambar produk -->
         {% if product_entry.image %}
             <img src="{{ product_entry.image.url }}" alt="{{ product_entry.name }}" class="w-full h-48 object-cover rounded-t-lg">
@@ -13,9 +17,9 @@
             <!-- Gunakan gambar default jika gambar tidak ada -->
             <img src="{% static 'path/to/default_image.jpg' %}" alt="Default Image" class="w-full h-48 object-cover rounded-t-lg">
         {% endif %}
-      <div class="bg-[#7d4c3a]-200 text-gray-800 p-4 rounded-t-lg border-b-2 border-[#7d4c3a]-300">
-        <h3 class="font-bold text-xl mb-2">{{product_entry.name}}</h3>
-        <p class="text-gray-600">{{product_entry.price}}</p>
+      <div class="bg-[#7d4c3a]-200 text-gray-500 p-4 rounded-t-lg border-b-2 border-[#7d4c3a]-300">
+        <h3 class="font-medium text-[#7d4c3a] font-serif text-xl  mb-2">{{product_entry.name}}</h3>
+        <p class="text-[#7d4c3a]">{{product_entry.price}}</p>
       </div>
       <div class="p-4">
         <p class="font-semibold text-lg mb-2">Description</p> 

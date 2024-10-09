@@ -14,7 +14,7 @@
 
           <a href="{% url 'main:logout' %}" class="logout-button">
             LOGOUT
-          </a> 
+          </a>          
         
         {% else %}
           <a href="{% url 'main:login' %}" class="text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 mr-2">
@@ -43,7 +43,7 @@
       <a href="{% url 'main:about_us' %}" class="block text-gray-700 hover:text-gray-900">ABOUT US</a>
       {% if user.is_authenticated %}
         <span class="block text-gray px-0 py-2">Welcome, {{ user.username }}</span> 
-        <a href="{% url 'main:logout' %}" class="block text-center bg-[#7d4c3a] hover:bg-[#ae7b6d]0 text-white font-bold py-2 px-30 rounded transition duration-300">
+        <a href="{% url 'main:logout' %}" class="block text-center bg-[#7d4c3a] hover:bg-[#ae7b6d] text-white font-bold py-2 px-8 rounded transition duration-300">
           Logout
         </a>
       {% else %}
@@ -64,4 +64,4 @@
       menu.classList.toggle("hidden");
     });
   </script>
-</nav>
+</nav>;l k

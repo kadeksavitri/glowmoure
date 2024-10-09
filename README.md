@@ -253,3 +253,39 @@ Konfigurasi untuk static file
 - menambahkan  middleware WhiteNoise. pada setting, menambahkan styles dan external CSSyang digunakan sebagai base atribut desain dan menambahkan nya ke base.html agar style CSS dapat digunakan di global.css kemudia membuat custom styling ke global.css
 
 Melakukan styling pada halaman login, register, home, card_mood, main.html, create_product_entry.html, edit_mood.html. 
+
+========================================================================================================
+Tugas Individu 6
+
+1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+Jawab: 
+JavaScript memainkan peran penting dalam pengembangan aplikasi web dengan memperkaya interaktivitas dan responsivitas tanpa membebani server. Fitur seperti penanganan event (event handling) memungkinkan pengguna untuk berinteraksi dengan halaman web—melalui klik atau ketikan—tanpa perlu memuat ulang halaman, yang secara signifikan meningkatkan pengalaman pengguna. Lebih lanjut, JavaScript memungkinkan manipulasi DOM (Document Object Model), membolehkan pengembang untuk dinamis mengubah konten, struktur, dan gaya halaman, membuat aplikasi lebih responsif terhadap interaksi pengguna. Dengan AJAX dan Fetch API, JavaScript mampu melakukan proses asinkron, mengirim dan menerima data dari server tanpa mengganggu tampilan yang aktif, yang meningkatkan kecepatan dan kinerja aplikasi. JavaScript juga mendukung pembuatan antarmuka pengguna yang kaya dengan efek visual seperti animasi dan drag-and-drop, memperbaiki tampilan serta fungsi aplikasi. Selain itu, kemampuan validasi data di sisi klien yang disediakan oleh JavaScript membantu mengurangi beban server dan meningkatkan keamanan serta kegunaan aplikasi dengan memverifikasi data sebelum dikirim ke server.
+
+2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+Jawab: 
+penggunaan await dalam JavaScript digunakan untuk menunggu promise yang dikembalikan oleh fetch() selesai. Sehinga dapat membuat sintaks kode lebih bersih dan mudah dibaca, dan terlihat bahwa kode tersebut bersifat sinkronus, meskipun operasinya asinkron. await menghentikan eksekusi kode selanjutnya hingga promise terpenuhi, dan mengembalikan hasilnya. Jika await tidak digunakan, fetch() akan kembali dengan promise yang belum terpenuhi, dan kode selanjutnya akan terus berjalan tanpa menunggu hasil fetch. Ini bisa menyebabkan masalah di mana data yang dibutuhkan dari fetch() belum siap saat kode selanjutnya mencoba menggunakannya.
+
+3. Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+Jawab:
+Decorator csrf_exempt digunakan untuk menandai view tertentu di Django agar tidak memerlukan token CSRF. CSRF (Cross-Site Request Forgery) adalah token keamanan yang digunakan Django untuk melindungi dari serangan CSRF, di mana pengguna yang jahat bisa memalsukan permintaan dari sisi pengguna. Pada kasus AJAX, terkadang token CSRF sulit diterapkan atau tidak praktis (seperti pada permintaan API dari domain lain) sehingga csrf_exempt diperlukan untuk memungkinkan permintaan POST melalui AJAX tanpa perlu token CSRF.
+
+4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+Jawab:
+Meskipun validasi dan sanitasi data di frontend adalah praktik yang baik dan membantu mengurangi beban di server, penting untuk melakukan pembersihan dan validasi data di backend untuk alasan keamanan. Tidak semua klien akan menggunakan JavaScript (misalnya, jika JavaScript dinonaktifkan pada browser), dan pengguna yang jahat bisa dengan mudah memanipulasi kode JavaScript untuk mengirim data yang berbahaya atau tidak valid. Oleh karena itu, pembersihan di backend adalah lapisan pertahanan terakhir yang memastikan integritas dan keamanan data sebelum diproses atau disimpan ke dalam database.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+- Menambah import csrf_exempt dan require_POST pada  view.py untuk menandai view yang akan digunakan untuk AJAX POST
+
+- membuat fungsi add_mood_entry_ajax pada views.py lalu menambahkan routing fungsi nya ke urls.py
+
+- Menambahkan AJAX
+Implementasi fungsi JavaScript fetch() untuk mengirim dan menerima data dari server tanpa reload halaman.serta menambahkan modal seagai form untuk menambahkan product ke halaman utama aplikasi dengan AJAX
+
+- Security dari Cross Site Scripting (XSS)
+ Menambahkan csrf_exempt hanya pada fungsi yang memerlukannya dan memastikan semua input yang masuk ke server bersih dari skrip berbahaya.
+
+- Pembersihan Data
+Menggunakan fungsi strip_tags di backend untuk membersihkan input dari tag HTML berbahaya sebelum menyimpan ke database dengan menggunakan DOMPurify denan kode 
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
+pada bagian program atribute yang digunakan adalah product dan price. 
