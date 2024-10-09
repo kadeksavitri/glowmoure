@@ -43,9 +43,28 @@ def show_xml(request):
     data = ProductDetail.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
+# def show_json(request):
+#     data = ProductDetail.objects.filter(user=request.user)
+#     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
 def show_json(request):
-    data = ProductDetail.objects.filter(user=request.user)
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+    products = ProductDetail.objects.filter(user=request.user)
+    product_list = []
+    
+    for product in products:
+        product_data = {
+            'id': product.pk,
+            'name': product.name,
+            'price': product.price,
+            'description': product.description,
+            'category': product.category,
+            'stock': product.stock,
+            'image_url': product.image.url if product.image else None,  # Add image URL here
+        }
+        product_list.append(product_data)
+    
+    return JsonResponse(product_list, safe=False)
+
 
 def show_xml_by_id(request, id):
     data = ProductDetail.objects.filter(pk=id)
