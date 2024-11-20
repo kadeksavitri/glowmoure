@@ -17,3 +17,6 @@ class ProductDetail(models.Model):
     def is_in_stock(self):
         return self.stock > 0
     
+
+    
+    
